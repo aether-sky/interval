@@ -15,7 +15,7 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.kotcrab.vis.ui.widget.VisWindow;
 
-public class TimerWindow extends VisWindow {
+public class TimerWindow extends MyVisWindow {
   VisLabel intervalLabel;
   VisLabel stageLabel;
   public TimerWindow(Runnable stageSwitcher, IntervalData data) {
@@ -26,13 +26,13 @@ public class TimerWindow extends VisWindow {
     Skin skin = VisUI.getSkin();
 
     this.intervalLabel = new VisLabel("0/");
-    this.stageLabel = makeStyledLabel(skin, "deja_32.fnt", "largeFont");
+    this.stageLabel = makeStyledLabel(skin, "deja_48.fnt", "largeFont");
     stageLabel.setText("Warmup");
 
     IntervalTimer timer = new IntervalTimer(data, this::setIntervalLabel, this::setStageLabel);
 
-    VisLabel timerClock = makeStyledLabel(skin, "deja_128.fnt", "extraLargeFont");
-
+    VisLabel timerClock = makeStyledLabel(skin, "deja_256.fnt", "extraLargeFont");
+    timerClock.setText("00:00");
     VisLabel totalClock = new VisLabel();
     VisLabel totalLabel = new VisLabel("Total Remaining:");
     VisLabel elapsedClock = new VisLabel();
@@ -49,17 +49,21 @@ public class TimerWindow extends VisWindow {
       }
     });
 
-    blankRow();
     add(stageLabel).colspan(2).center().row();
-    add(timerClock).colspan(3).row();
-    blankRow();
-    add(totalLabel);
-    add(totalClock).row();
-    add(elapsedLabel);
-    add(elapsedClock).row();
-    add(new VisLabel("Intervals:"));
-    add(intervalLabel).row();
-    blankRow();
+
+    VisTable timerTable = new VisTable(true);
+
+    timerTable.add(timerClock).width(timerClock.getPrefWidth() + 10).colspan(2).center();
+
+    add(timerTable).colspan(2).center().row();
+
+    VisTable textTable = new VisTable(true);
+    textTable.add(totalLabel).right();
+    textTable.add(totalClock).row();
+    textTable.add(elapsedLabel).right();
+    textTable.add(elapsedClock).row();
+    textTable.add(new VisLabel("Intervals:")).right();
+    textTable.add(intervalLabel).row();
 
     VisTextButton returnButton = new VisTextButton("Return");
     Utilities.addClickListener(returnButton, (event, x, y) -> {
@@ -81,14 +85,14 @@ public class TimerWindow extends VisWindow {
         playButton.setText("Play");
       });
 
-    add(playButton).width(150);
-    add(resetButton).width(150).row();
+    textTable.add(playButton).width(150).height(70);
+    textTable.add(resetButton).width(150).height(70).row();
+    add(textTable).colspan(2).center().row();
+
     blankRow();
-    blankRow();
-    blankRow();
-    add(returnButton).width(100).colspan(3).align(Align.bottomRight).row();
     pack();
-    setSize(500,500);
+    setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    add(returnButton).width(150).colspan(3).right().row();
     centerWindow();
   }
 
@@ -108,10 +112,6 @@ public class TimerWindow extends VisWindow {
 
   private void setStageLabel(String text) {
     this.stageLabel.setText(text);
-  }
-
-  private void blankRow() {
-    add(new VisLabel("")).row();
   }
 
   private String formatTime(int t) {

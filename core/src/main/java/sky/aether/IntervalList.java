@@ -57,7 +57,7 @@ public class IntervalList extends List<IntervalData> {
   public String GetNextName() {
     int i = 0;
     boolean found = false;
-    String baseName = "New Timer";
+    String baseName = "Timer";
     String testName;
     while (true) {
       testName = baseName + i;

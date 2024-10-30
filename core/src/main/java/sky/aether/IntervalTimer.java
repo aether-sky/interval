@@ -7,7 +7,7 @@ enum IntervalStage {
   HighIntensity("High Intensity"),
   LowIntensity("Low Intensity"),
   Cooldown("Cooldown"),
-  Finished("End of Timer");
+  Finished("Finished");
   private final String label;
   IntervalStage(String label) { this.label = label; }
 
@@ -54,11 +54,11 @@ public class IntervalTimer {
     setIntervalLabel.accept((Math.min(stagePtr + 1, stages.length-1)) + "/" + (stages.length-1));
     if (paused) return;
     totalElapsed += delta;
+    Pair<IntervalStage,Float> stage = stages[stagePtr];
+    setStageLabel.accept(stage.first.toString());
     if (stagePtr == stages.length - 1) return;
     elapsed += delta;
     totalTimeLeft -= delta;
-    Pair<IntervalStage,Float> stage = stages[stagePtr];
-    setStageLabel.accept(stage.first.toString());
     if (elapsed > stage.second) {
       elapsed = 0;
       if (stage.second > 0) {

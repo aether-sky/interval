@@ -9,7 +9,7 @@ import com.kotcrab.vis.ui.widget.VisWindow;
 import java.util.Arrays;
 
 
-public class CreditsWindow extends VisWindow {
+public class CreditsWindow extends MyVisWindow {
   public CreditsWindow(Runnable stageSwitcher) {
     super("");
     TableUtils.setSpacingDefaults(this);
@@ -21,7 +21,8 @@ public class CreditsWindow extends VisWindow {
       "Sounds taken from freesound.org",
       "3-beep-b (softbeep) by user jobro",
       "beeps3 (trill) by user steveygos93",
-      "Vandierdonck_Joan_2015_2016_alarm_beep (alarm) by user univ_lyon3",
+      "Vandierdonck_Joan_2015_2016_alarm_beep ",
+      "    (alarm) by user univ_lyon3",
       "morning-bird-chirping (chirp) by user fudgealtoid"
     };
     String label = Arrays.stream(credits)
@@ -29,7 +30,7 @@ public class CreditsWindow extends VisWindow {
                          .orElse("");
     VisLabel creditsLabel = new VisLabel(label);
     add(creditsLabel).row();
-
+    super.blankRow();
     VisTextButton returnButton = new VisTextButton("Return");
     Utilities.addClickListener(returnButton, (event, x, y) -> {
       stageSwitcher.run();

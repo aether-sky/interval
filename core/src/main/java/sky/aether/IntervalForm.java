@@ -22,8 +22,7 @@ public class IntervalForm extends ApplicationAdapter {
   @Override
   public void create() {
     VisUI.setSkipGdxVersionCheck(true);
-    VisUI.load(SkinScale.X1);
-
+    VisUI.load(SkinScale.X2);
     stage = new Stage(new ScreenViewport());
     Gdx.input.setInputProcessor(stage);
 
@@ -62,4 +61,5 @@ public class IntervalForm extends ApplicationAdapter {
     VisUI.dispose();
     stage.dispose();
   }
+
 }

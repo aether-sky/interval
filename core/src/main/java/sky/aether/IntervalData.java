@@ -15,6 +15,9 @@ public class IntervalData {
                       int warmup,
                       int cooldown,
                       String sfx) {
+    if (sets <= 0 || high < 0 || low < 0 || warmup < 0 || cooldown < 0) {
+      throw new NumberFormatException();
+    }
     this.name = name;
     this.sets = sets;
     this.low = low;
