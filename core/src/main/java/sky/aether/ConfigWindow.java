@@ -29,7 +29,7 @@ public class ConfigWindow extends MyVisWindow {
     columnDefaults(0).left();
     SoundManager.init();
 
-    VisTextField nameField = makeSimpleField("Name:", false, false);
+    VisTextField nameField = makeSimpleField("Names:", false, false);
     VisTextField setsField = makeSimpleField("Num sets:", true, true);
     VisTextField hiField = makeSimpleField("High intensity:", true, false);
     VisTextField liField = makeSimpleField("Low intensity:", true, true);
