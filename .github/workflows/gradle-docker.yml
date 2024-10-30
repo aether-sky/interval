@@ -14,7 +14,7 @@ env:
 
 jobs:
 
-  build-gradle:
+  build-gradle-docker:
 
     runs-on: ubuntu-latest
 
@@ -34,10 +34,6 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew html:dist
 
-  build-docker:
-    runs-on: ubuntu-latest
-
-    steps:
     - uses: actions/checkout@v4
 
     - name: look at directories
