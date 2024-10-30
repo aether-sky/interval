@@ -41,6 +41,9 @@ jobs:
     - name: Run Bash script
       run: bash ./mkbuild.sh
 
+    - name: look at directories (again)
+      run: tree
+
     - name: Build the Docker image
       working-directory: ./dist/
       run: docker build . --file Dockerfile --tag olivinedogue/interval:$(date +%s)
