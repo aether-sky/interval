@@ -39,8 +39,8 @@ jobs:
 
     steps:
     - name: look at directories
-      run: ls .
-      
+      run: pwd
+
     - name: Run Bash script
       run: bash ./mkbuild.sh
 
