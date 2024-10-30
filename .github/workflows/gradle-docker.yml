@@ -44,12 +44,9 @@ jobs:
     - name: look at directories (again)
       run: tree
 
-    - name: make tag name
-      run: echo $(date +%s) >> ./dist/tagname
-
     - name: Build the Docker image
       working-directory: ./dist/
-      run: docker build . --file Dockerfile --tag aethersky/interval:$(cat ./tagname)
+      run: docker build . --file Dockerfile --tag aethersky/interval:latest
 
     - name: Log in to Docker Hub
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -59,7 +56,7 @@ jobs:
 
     - name: Push the Docker image
       working-directory: ./dist/
-      run: docker push docker.io/aethersky/interval:$(cat ./tagname)
+      run: docker push docker.io/aethersky/interval:latest
     #- name: Extract metadata (tags, labels) for Docker
     #  id: meta
     #  uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
