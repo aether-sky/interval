@@ -32,7 +32,7 @@ jobs:
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
     - name: Build with Gradle Wrapper
-      run: ../gradlew html:dist
+      run: ./gradlew html:dist
 
   dependency-submission:
 
@@ -57,7 +57,7 @@ jobs:
 
     steps:
     - name: Run Bash script
-      run: bash ./interval/mkbuild.sh
+      run: bash ./mkbuild.sh
 
     - uses: actions/checkout@v4
     - name: Build the Docker image
